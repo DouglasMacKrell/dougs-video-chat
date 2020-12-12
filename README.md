@@ -49,15 +49,21 @@ You can check to see if you already have Node.js by typing `node -v` in your ter
 
        `git clone https://github.com/DouglasMacKrell/dougs-video-chat.git`
 
-2. Install dependencies for the app from inside the cloned folder:
+2. Install dependencies for the app from inside the cloned root folder:
 
        `npm install`
 
-3. To launch the App, inside the root folder run:
+3. To launch the App, make sure you have nothing else running on port 3000 and 3001, from inside the root folder run:
 
        `npm run devStart`
 
-4. A new browser tab should have been opened and the App should be running. If that is not the case check the terminals output for errors, if you are unable to troubleshoot the problem, I would be happy to address issues so open [one](/issues)
+4. Open a new browser window and visit `localhost:3000`. The browser should ask you for permission to connect to your camera and microphone. The app will generate a room code in the URL. When you visit the same URL `localhost:3000/:roomId`, it will make the peer-to-peer connection and connect the call instantly.
+
+5. To disconnect from a call, simply close the browser window.
+
+6. Currently, the app is only designed to run locally on the same network
+
+7. If that is not the case check the terminals output for errors, if you are unable to troubleshoot the problem, I would be happy to address issues so open [one](/issues)
 
 ---
 
