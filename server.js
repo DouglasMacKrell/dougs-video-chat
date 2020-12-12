@@ -4,7 +4,7 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const { v4: uuidV4 } = require('uuid')
 
-app.set('video engine', 'ejs')
+app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
@@ -16,10 +16,19 @@ app.get('/:room', (req, res) => {
 })
 
 io.on('connection', socket => {
-    socket.on('join room', (roomId, userId) => {
-        console.log(roomId, userId)
+    socket.on('join-room', (roomId, userId) => {
+        socket.join(roomId)
+        socket.to(roomId).broadcast.emit('user-connected', userId)
     })
 })
 
-server.listen(3000)
+server.listen(3000);
 
+const srv = app.listen(3001)
+
+app.use(
+  "/peerjs",
+  require("peer").ExpressPeerServer(srv, {
+    debug: true,
+  })
+);
